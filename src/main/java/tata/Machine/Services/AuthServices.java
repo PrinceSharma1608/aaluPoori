@@ -1,19 +1,17 @@
 package tata.Machine.Services;
 
-import org.apache.catalina.User;
-import tata.Machine.*;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tata.Machine.DTO.login;
 import tata.Machine.DTO.loginResponse;
+import tata.Machine.Repositories.usersRepository;
 import tata.Machine.entity.users;
 
 @Service
 @RequiredArgsConstructor
-public class AuthService {
+public class AuthServices {
 
-    private final users userRepository;
+    private final usersRepository userRepository;
 
     private final JwtService jwtService;
 
@@ -44,16 +42,7 @@ public class AuthService {
                 );
 
         String sessionId =
-                io.jsonwebtoken.Jwts.parser()
-                        .setSigningKey(
-                                "THIS_IS_A_SECRET_KEY_FOR_JWT"
-                        )
-                        .parseClaimsJws(token)
-                        .getBody()
-                        .get(
-                                "sessionId",
-                                String.class
-                        );
+                jwtService.extractSessionId(token);
 
         return new loginResponse(
                 token,

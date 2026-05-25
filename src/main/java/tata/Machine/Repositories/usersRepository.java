@@ -1,7 +1,9 @@
 package tata.Machine.Repositories;
 
-import org.hibernate.dialect.function.NumberSeriesGenerateSeriesFunction;
-import org.springframework.context.annotation.Bean;
+import tata.Machine.entity.users;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-public interface users extends JpaRepository<users, String> {
-    }
+
+public interface usersRepository
+        extends JpaRepository<users, String> {
+}
