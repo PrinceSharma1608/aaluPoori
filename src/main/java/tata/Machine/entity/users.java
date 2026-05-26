@@ -1,32 +1,34 @@
 package tata.Machine.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-import lombok.Getter;
-import lombok.Setter;
-
-@Entity
-@Table(name = "users")
+import jakarta.persistence.*;
+import lombok.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "users")
+public class users {
 
-public class users{
+    public enum UserRole {
+        LINE_INCHARGE,
+        SUPERVISOR,
+        TEAM_LEADER,
+        JH_OWNER
+    }
 
     @Id
-
-    @Column(name = "user_id")
+    @Column(name = "user_id", length = 9)
     private String userId;
 
-    @Column(name = "user_name")
+    @Column(name = "user_name", nullable = false, length = 100)
     private String userName;
 
-    @Column(name = "user_role")
-    private String userRole;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_role", nullable = false)
+    private UserRole userRole;
 
-    @Column(name = "user_password")
+    @Column(name = "user_password", nullable = false, length = 100)
     private String userPassword;
 }
