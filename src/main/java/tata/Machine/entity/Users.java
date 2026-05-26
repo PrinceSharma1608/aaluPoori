@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class users {
+public class Users {
 
     public enum UserRole {
         LINE_INCHARGE,
