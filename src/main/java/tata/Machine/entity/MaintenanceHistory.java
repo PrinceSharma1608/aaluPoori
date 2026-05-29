@@ -41,7 +41,7 @@ public class MaintenanceHistory {
 
     @ManyToOne
     @JoinColumn(name = "updated_by")
-    private users updatedBy;
+    private Users updatedBy;
 
     @Column(name = "updated_at")
     private Timestamp updatedAt;

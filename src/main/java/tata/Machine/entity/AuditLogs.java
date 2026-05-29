@@ -36,7 +36,7 @@ public class AuditLogs {
 
     @ManyToOne
     @JoinColumn(name = "audited_by", nullable = false)
-    private users auditedBy;
+    private Users auditedBy;
 
     @Column(name = "audit_date", nullable = false)
     private Timestamp auditDate;
