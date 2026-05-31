@@ -30,7 +30,7 @@ public class MaintenanceLogs {
 
     @ManyToOne
     @JoinColumn(name = "performed_by", nullable = false)
-    private Users performedBy;
+    private users performedBy;
 
     @Column(name = "maintenance_date", nullable = false)
     private Timestamp maintenanceDate;

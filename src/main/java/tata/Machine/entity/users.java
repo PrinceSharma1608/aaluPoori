@@ -9,15 +9,13 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class Users {
-
+public class users {
     public enum UserRole {
         LINE_INCHARGE,
         SUPERVISOR,
         TEAM_LEADER,
         JH_OWNER
     }
-
     @Id
     @Column(name = "user_id", length = 9)
     private String userId;

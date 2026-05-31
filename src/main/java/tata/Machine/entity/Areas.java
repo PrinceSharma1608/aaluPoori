@@ -2,7 +2,7 @@ package tata.Machine.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import tata.Machine.entity.Users;
+import tata.Machine.entity.users;
 
 @Getter
 @Setter
@@ -21,5 +21,5 @@ public class Areas {
 
     @OneToOne
     @JoinColumn(name = "supervisor_id")
-    private Users supervisor;
+    private users supervisor;
 }

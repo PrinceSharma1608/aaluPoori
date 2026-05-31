@@ -30,7 +30,7 @@ public class Machines {
     @OneToOne
     @JoinColumn(name = "jhowner_id")
 
-    private Users jhOwner;
+    private users jhOwner;
 
     @Column(name = "subarea", length = 2000)
     private String subarea;

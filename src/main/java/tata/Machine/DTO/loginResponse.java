@@ -1,7 +1,7 @@
 package tata.Machine.DTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import tata.Machine.entity.Users;
+import tata.Machine.entity.users;
 
 @Getter
 @AllArgsConstructor
@@ -10,6 +10,6 @@ public class loginResponse {
     private String role;
     private String sessionId;
 
-    public loginResponse(String token, Users.UserRole userRole, String sessionId) {
+    public loginResponse(String token, users.UserRole userRole, String sessionId) {
     }
 }

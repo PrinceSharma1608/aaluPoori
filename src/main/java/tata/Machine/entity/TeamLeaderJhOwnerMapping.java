@@ -2,7 +2,7 @@ package tata.Machine.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import tata.Machine.entity.Users;
+import tata.Machine.entity.users;
 
 @Getter
 @Setter
@@ -15,9 +15,9 @@ public class TeamLeaderJhOwnerMapping {
     @Id
     @OneToOne
     @JoinColumn(name = "jhowner_id")
-    private Users jhOwner;
+    private users jhOwner;
 
     @ManyToOne
     @JoinColumn(name = "teamleader_id", nullable = false)
-    private Users teamLeader;
+    private users teamLeader;
 }
