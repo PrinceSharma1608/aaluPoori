@@ -9,5 +9,4 @@ public class usersDTO
     private String userName;
     private String userId;
     private String userRole;
-
 }

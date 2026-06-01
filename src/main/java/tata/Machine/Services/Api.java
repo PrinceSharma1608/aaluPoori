@@ -3,7 +3,9 @@ package tata.Machine.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tata.Machine.DTO.usersDTO;
+import tata.Machine.Repository.machineRepo;
 import tata.Machine.Repository.userRepo;
+import tata.Machine.entity.Machines;
 import tata.Machine.entity.users;
 import tata.Machine.Services.*;
 import java.util.ArrayList;
@@ -14,16 +16,21 @@ import java.util.List;
 public class Api {
     @Autowired
     private UsersService usersService;
+    @Autowired
+    private machineRepo machineRepo;
+
     @GetMapping("/users")
     public List<usersDTO> FetchAllUsers() {
         return usersService.fetchAllUsers();
-
     }
     @GetMapping("/role")
-    public List<usersDTO> fetchUsersByRole(
-            @RequestParam users.UserRole role)
+    public List<usersDTO> fetchUsersByRole(@RequestParam users.UserRole role)
     {
-        return usersService
-                .fetchUsersByRole(role);
+        return usersService.fetchUsersByRole(role);
+    }
+    @GetMapping("/allMachine")
+    public List<Machines> fetchAllMachines()
+    {
+        return machineRepo.findAll();
     }
 }
