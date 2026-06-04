@@ -1,16 +1,11 @@
 package tata.Machine.Services;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tata.Machine.DTO.usersDTO;
-import tata.Machine.Repository.machineRepo;
-import tata.Machine.Repository.userRepo;
-import tata.Machine.entity.Machines;
-import tata.Machine.entity.users;
+import tata.Machine.DTO.*;
+import tata.Machine.Repository.*;
+import tata.Machine.entity.*;
 import tata.Machine.Services.*;
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 @RestController
 @RequestMapping("/fetch")
 public class Api {
@@ -18,6 +13,12 @@ public class Api {
     private UsersService usersService;
     @Autowired
     private machineRepo machineRepo;
+    @Autowired
+    private maintenancelogRepo mlrp;
+    @Autowired
+    private areaRepo areaRepo;
+    @Autowired
+    private MachinesService msc;
 
     @GetMapping("/users")
     public List<usersDTO> FetchAllUsers() {
@@ -33,4 +34,14 @@ public class Api {
     {
         return machineRepo.findAll();
     }
+    @GetMapping("/logs")
+    public List<MaintenanceLogs> retrieveLogs()
+    {
+        return mlrp.findAll();
+    }
+@PostMapping("/a-mMap")
+    public boolean amMapping(@RequestBody  List<AreaMachineMappingDTO> mappings )
+{
+    return msc.AreaMachineMap(mappings);
+}
 }

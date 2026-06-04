@@ -28,15 +28,14 @@ public class Machines {
     private Areas area;
 
     @OneToOne
-    @JoinColumn(name = "jhowner_id")
-
+    @JoinColumn(name = "jhowner_id",nullable = true)
     private users jhOwner;
 
     @Column(name = "subarea", length = 2000)
     private String subarea;
 
     @Column(name = "maintenance_frequency_days", nullable = false)
-    private Integer maintenanceFrequencyDays;
+    private Integer maintenanceFrequencyDays=0;
 
     @Column(name = "delay_count", nullable = false)
     private Integer delayCount = 0;
