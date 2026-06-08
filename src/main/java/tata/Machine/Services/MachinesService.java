@@ -4,7 +4,7 @@ package tata.Machine.Services;
 import org.jspecify.annotations.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tata.Machine.DTO.AreaMachineMappingDTO;
+import tata.Machine.DTO.MachineMappingDTO;
 import tata.Machine.DTO.machineDTO;
 import tata.Machine.Repository.areaRepo;
 import tata.Machine.Repository.machineRepo;
@@ -41,9 +41,9 @@ class  MachinesService {
         return dtoList;
     }
 
-    public boolean AreaMachineMap( List<AreaMachineMappingDTO> mappings) {
+    public boolean AreaMachineMap( List<MachineMappingDTO> mappings) {
         List<Machines> machinesToUpdate = new ArrayList<>();
-        for (AreaMachineMappingDTO dto : mappings) {
+        for (MachineMappingDTO dto : mappings) {
             Machines machine = machineRepo.findById(dto.getMachineId()).orElseThrow();
             Areas area = areaRepo.findById(dto.getAreaId()).orElseThrow();
             machine.setArea(area);

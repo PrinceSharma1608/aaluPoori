@@ -40,7 +40,7 @@ public class Api {
         return mlrp.findAll();
     }
 @PostMapping("/a-mMap")
-    public boolean amMapping(@RequestBody  List<AreaMachineMappingDTO> mappings )
+    public boolean amMapping(@RequestBody  List<MachineMappingDTO> mappings )
 {
     return msc.AreaMachineMap(mappings);
 }
