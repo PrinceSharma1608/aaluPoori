@@ -42,6 +42,6 @@ public class Api {
 @PostMapping("/a-mMap")
     public boolean amMapping(@RequestBody  List<MachineMappingDTO> mappings )
 {
-    return msc.AreaMachineMap(mappings);
+    return msc.MachineMap(mappings);
 }
 }
