@@ -34,12 +34,26 @@ class  MachinesService {
             machineDTO dto = new machineDTO();
             dto.setMachineId(machine.getMachineId());
             dto.setMachineName(machine.getMachineName());
-            dto.setArea(machine.getArea().getAreaName());
-            dto.setJhOwner(machine.getJhOwner().getUserName());
+            dto.setArea(
+                    machine.getArea() != null
+                            ? machine.getArea().getAreaName()
+                            : "Unassigned"
+            );
+
+            dto.setJhOwner(
+                    machine.getJhOwner() != null
+                            ? machine.getJhOwner().getUserName()
+                            : "Not Assigned"
+            );
+
             dto.setSubarea(machine.getSubarea());
-            dto.setMaintenanceFrequencyDays(machine.getMaintenanceFrequencyDays());
+            dto.setMaintenanceFrequencyDays(
+                    machine.getMaintenanceFrequencyDays()
+            );
             dto.setDelayCount(machine.getDelayCount());
-            dto.setMachineStatus(machine.getMachineStatus().toString());
+            dto.setMachineStatus(
+                    machine.getMachineStatus().toString()
+            );
             dtoList.add(dto);
         }
 

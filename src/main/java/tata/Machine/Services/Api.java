@@ -30,16 +30,16 @@ public class Api {
         return usersService.fetchUsersByRole(role);
     }
     @GetMapping("/allMachine")
-    public List<Machines> fetchAllMachines()
+    public List<machineDTO> fetchAllMachines()
     {
-        return machineRepo.findAll();
+        return msc.fetchAllMachines();
     }
     @GetMapping("/logs")
     public List<MaintenanceLogs> retrieveLogs()
     {
         return mlrp.findAll();
     }
-@PostMapping("/a-mMap")
+@PutMapping("/a-mMap")
     public boolean amMapping(@RequestBody  List<MachineMappingDTO> mappings )
 {
     return msc.MachineMap(mappings);
