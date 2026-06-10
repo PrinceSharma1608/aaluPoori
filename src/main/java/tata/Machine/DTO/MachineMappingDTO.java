@@ -13,6 +13,7 @@ public class MachineMappingDTO {
         INACTIVE
     }
 
+    private String flag;
     private String machineId;
     private String areaId;
    private MachineStatus status;

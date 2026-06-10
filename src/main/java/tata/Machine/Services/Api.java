@@ -19,29 +19,46 @@ public class Api {
     private areaRepo areaRepo;
     @Autowired
     private MachinesService msc;
+    @Autowired
+    private AreasService asc;
 
     @GetMapping("/users")
     public List<usersDTO> FetchAllUsers() {
         return usersService.fetchAllUsers();
     }
+
     @GetMapping("/role")
-    public List<usersDTO> fetchUsersByRole(@RequestParam users.UserRole role)
-    {
+    public List<usersDTO> fetchUsersByRole(@RequestParam users.UserRole role) {
         return usersService.fetchUsersByRole(role);
     }
+    /*@GetMapping("/machineid")
+    public List<usersDTO> fetchMachinebyId(@RequestParam String machineid) {
+        return usersService.fetchUsersByRole(machineid);
+    }*/
+
     @GetMapping("/allMachine")
-    public List<machineDTO> fetchAllMachines()
-    {
+    public List<machineDTO> fetchAllMachines() {
         return msc.fetchAllMachines();
     }
+
     @GetMapping("/logs")
-    public List<MaintenanceLogs> retrieveLogs()
-    {
+    public List<MaintenanceLogs> retrieveLogs() {
         return mlrp.findAll();
     }
-@PutMapping("/a-mMap")
-    public boolean amMapping(@RequestBody  List<MachineMappingDTO> mappings )
-{
-    return msc.MachineMap(mappings);
+
+@RestController
+@RequestMapping("/map")
+class mapping{
+    @PutMapping("/mMap")
+    public boolean amMapping(@RequestBody List<MachineMappingDTO> mappings)
+    {
+        return msc.MachineMap(mappings);
+    }
+    @PutMapping("/area-supervisor-map")
+    public boolean areaSupervisorMap(
+            @RequestBody List<SupervisorAreaMappingDTO> mappings) {
+
+        return asc.areaSupervisorMap(mappings);
+    }
 }
-}
+    }

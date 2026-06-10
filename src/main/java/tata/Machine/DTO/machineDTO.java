@@ -12,5 +12,6 @@ public class machineDTO {
     private Integer maintenanceFrequencyDays;
     private Integer delayCount = 0;
     private String  machineStatus;
+    private String flag;
 }
 

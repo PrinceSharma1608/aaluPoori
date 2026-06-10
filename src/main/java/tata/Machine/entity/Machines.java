@@ -15,7 +15,6 @@ public class Machines {
         ACTIVE,
         INACTIVE
     }
-
     @Id
     @Column(name = "machine_id", length = 50)
     private String machineId;
@@ -43,4 +42,7 @@ public class Machines {
     @Enumerated(EnumType.STRING)
     @Column(name = "machine_status", nullable = false)
     private MachineStatus machineStatus;
+
+    @Column(name="flag")
+    private String flag;
 }

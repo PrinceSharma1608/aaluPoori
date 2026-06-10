@@ -1,6 +1,4 @@
 package tata.Machine.Services;
-
-
 import org.jspecify.annotations.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +10,7 @@ import tata.Machine.Repository.userRepo;
 import tata.Machine.entity.Areas;
 import tata.Machine.entity.Machines;
 import tata.Machine.entity.users;
-
 import java.util.*;
-
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
@@ -47,6 +43,9 @@ class  MachinesService {
             );
 
             dto.setSubarea(machine.getSubarea());
+            dto.setFlag(machine.getFlag()!= null
+                    ? machine.getFlag()
+                    : "Not Assigned");
             dto.setMaintenanceFrequencyDays(
                     machine.getMaintenanceFrequencyDays()
             );
@@ -90,6 +89,7 @@ class  MachinesService {
             if (dto.getSubarea() != null) {
                 machine.setSubarea(dto.getSubarea());
             }
+                machine.setFlag(dto.getFlag());
 
             if (dto.getMaintenanceFrequencyDays() != null) {
                 machine.setMaintenanceFrequencyDays(
