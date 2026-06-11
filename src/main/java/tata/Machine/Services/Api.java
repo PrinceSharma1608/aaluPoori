@@ -54,7 +54,7 @@ class mapping{
     {
         return msc.MachineMap(mappings);
     }
-    @PutMapping("/area-supervisor-map")
+    @PutMapping("/asMap")
     public boolean areaSupervisorMap(
             @RequestBody List<SupervisorAreaMappingDTO> mappings) {
 
