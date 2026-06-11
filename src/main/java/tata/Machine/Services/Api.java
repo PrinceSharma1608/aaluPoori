@@ -20,6 +20,8 @@ public class Api {
     @Autowired
     private MachinesService msc;
     @Autowired
+    private MaintenanceService masc;
+    @Autowired
     private AreasService asc;
 
     @GetMapping("/users")
@@ -41,6 +43,11 @@ public class Api {
         return msc.fetchAllMachines();
     }
 
+    @GetMapping("/maintenance/dashboard")
+    public ResponseEntity<List<MaintenanceDashboardDTO>>
+    getDashboard(@RequestParam String userId, @RequestParam String status) {
+        return ResponseEntity.ok(masc.getDashboard(userId, status));
+    }
     @GetMapping("/logs")
     public List<MaintenanceLogs> retrieveLogs() {
         return mlrp.findAll();
@@ -53,10 +60,8 @@ public class Api {
         public boolean amMapping(@RequestBody List<MachineMappingDTO> mappings) {
             return msc.MachineMap(mappings);
         }
-
         @PutMapping("/asMap")
-        public boolean areaSupervisorMap(
-                @RequestBody List<SupervisorAreaMappingDTO> mappings) {
+        public boolean areaSupervisorMap(@RequestBody List<SupervisorAreaMappingDTO> mappings) {
 
             return asc.areaSupervisorMap(mappings);
         }

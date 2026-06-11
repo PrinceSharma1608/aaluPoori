@@ -12,5 +12,7 @@ import java.util.Optional;
 @Repository
 public interface machineRepo extends JpaRepository<Machines,String>
 {
+    List<Machines> findByJhOwner_UserId(String userId);
+    List<Machines> findByArea_AreaId(String areaId);
 
 }
