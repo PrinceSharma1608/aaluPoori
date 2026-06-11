@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import tata.Machine.DTO.*;
 import tata.Machine.Repository.*;
 import tata.Machine.entity.*;
-import tata.Machine.Services.*;
 import java.util.*;
 @RestController
 @RequestMapping("/fetch")
@@ -61,12 +60,11 @@ public class Api {
 
             return asc.areaSupervisorMap(mappings);
         }
-    }
+        @PostMapping("/teamleader")
+        public ResponseEntity<String> mapTeamLeaders(@RequestBody List<TeamLeaderMappingDTO> dto) {
+            usersService.mapTeamLeader(dto);
 
-    @PostMapping("/teamleader")
-    public ResponseEntity<String> mapTeamLeaders(@RequestBody List<TeamLeaderMappingDTO> dto) {
-        usersService.mapTeamLeader(dto);
-
-        return ResponseEntity.ok("Mapping Successful");
+            return ResponseEntity.ok("Mapping Successful");
+        }
     }
 }
