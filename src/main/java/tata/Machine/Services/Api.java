@@ -1,5 +1,6 @@
 package tata.Machine.Services;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tata.Machine.DTO.*;
 import tata.Machine.Repository.*;
@@ -46,19 +47,26 @@ public class Api {
         return mlrp.findAll();
     }
 
-@RestController
-@RequestMapping("/map")
-class mapping{
-    @PutMapping("/mMap")
-    public boolean amMapping(@RequestBody List<MachineMappingDTO> mappings)
-    {
-        return msc.MachineMap(mappings);
-    }
-    @PutMapping("/asMap")
-    public boolean areaSupervisorMap(
-            @RequestBody List<SupervisorAreaMappingDTO> mappings) {
+    @RestController
+    @RequestMapping("/map")
+    class mapping {
+        @PutMapping("/mMap")
+        public boolean amMapping(@RequestBody List<MachineMappingDTO> mappings) {
+            return msc.MachineMap(mappings);
+        }
 
-        return asc.areaSupervisorMap(mappings);
+        @PutMapping("/asMap")
+        public boolean areaSupervisorMap(
+                @RequestBody List<SupervisorAreaMappingDTO> mappings) {
+
+            return asc.areaSupervisorMap(mappings);
+        }
+    }
+
+    @PostMapping("/teamleader")
+    public ResponseEntity<String> mapTeamLeaders(@RequestBody List<TeamLeaderMappingDTO> dto) {
+        usersService.mapTeamLeader(dto);
+
+        return ResponseEntity.ok("Mapping Successful");
     }
 }
-    }
