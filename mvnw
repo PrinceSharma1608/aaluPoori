@@ -203,7 +203,7 @@ elif set_java_home; then
   targetZip="$TMP_DOWNLOAD_DIR/$distributionUrlName"
   cat >"$javaSource" <<-END
 	public class Downloader extends java.net.Authenticator
-	{`
+	{
 	  protected java.net.PasswordAuthentication getPasswordAuthentication()
 	  {
 	    return new java.net.PasswordAuthentication( System.getenv( "MVNW_USERNAME" ), System.getenv( "MVNW_PASSWORD" ).toCharArray() );
