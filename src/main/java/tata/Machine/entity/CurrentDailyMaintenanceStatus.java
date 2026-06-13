@@ -2,40 +2,46 @@ package tata.Machine.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import tata.Machine.entity.Machines;
 
-import java.sql.Timestamp;
-import java.sql.Date;
+import java.time.*;
 
-@Getter
-@Setter
+@Entity
+@Table(name="current_daily_maintenance_status")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "current_daily_maintenance_status")
 public class CurrentDailyMaintenanceStatus {
 
-    public enum MaintenanceStatus {
+    public enum MaintenanceStatus
+    {
         PENDING,
         COMPLETED,
         MISSED
     }
 
     @Id
+    @Column(name="machine_id")
+    private String machineId;
+
     @OneToOne
-    @JoinColumn(name = "machine_id")
+    @JoinColumn(
+            name="machine_id",
+            referencedColumnName="machine_id",
+            insertable=false,
+            updatable=false
+    )
     private Machines machine;
 
-    @Column(name = "maintenance_date", nullable = false)
-    private Date maintenanceDate;
+    @Column(name="maintenance_date")
+    private LocalDate maintenanceDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "maintenance_status", nullable = false)
+    @Column(name="maintenance_status")
     private MaintenanceStatus maintenanceStatus;
 
-    @Column(name = "audited", nullable = false)
-    private Boolean audited = false;
+    @Column(name="audited")
+    private Boolean audited;
 
-    @Column(name = "updated_at", nullable = false)
-    private Timestamp updatedAt;
+    @Column(name="updated_at")
+    private LocalDateTime updatedAt;
 }

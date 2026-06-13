@@ -14,7 +14,7 @@ public class Api {
     @Autowired
     private machineRepo machineRepo;
     @Autowired
-    private maintenancelogRepo mlrp;
+    private DailyStatusRepo dailyRepo;
     @Autowired
     private areaRepo areaRepo;
     @Autowired
@@ -23,7 +23,16 @@ public class Api {
     private MaintenanceService masc;
     @Autowired
     private AreasService asc;
-
+    @GetMapping("/test")
+    public List<String> test()
+    {
+        return dailyRepo.findAll()
+                .stream()
+                .map(x ->
+                        x.getMachine()
+                                .getMachineName())
+                .toList();
+    }
     @GetMapping("/users")
     public List<usersDTO> FetchAllUsers() {
         return usersService.fetchAllUsers();
@@ -43,15 +52,15 @@ public class Api {
         return msc.fetchAllMachines();
     }
 
-    @GetMapping("/maintenance/dashboard")
-    public ResponseEntity<List<MaintenanceDashboardDTO>>
-    getDashboard(@RequestParam String userId, @RequestParam String status) {
+    @GetMapping("/dashboard")
+    public ResponseEntity<List<MaintenanceDashboardDTO>> dashboard(@RequestParam String userId, @RequestParam String status)
+    {
         return ResponseEntity.ok(masc.getDashboard(userId, status));
     }
-    @GetMapping("/logs")
+   /* @GetMapping("/logs")
     public List<MaintenanceLogs> retrieveLogs() {
         return mlrp.findAll();
-    }
+    }*/
 
     @RestController
     @RequestMapping("/map")
