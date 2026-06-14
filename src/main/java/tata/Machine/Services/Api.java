@@ -1,7 +1,9 @@
 package tata.Machine.Services;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tata.Machine.Auth.AuthService;
 import tata.Machine.DTO.*;
 import tata.Machine.Repository.*;
 import tata.Machine.entity.*;
@@ -23,16 +25,7 @@ public class Api {
     private MaintenanceService masc;
     @Autowired
     private AreasService asc;
-    @GetMapping("/test")
-    public List<String> test()
-    {
-        return dailyRepo.findAll()
-                .stream()
-                .map(x ->
-                        x.getMachine()
-                                .getMachineName())
-                .toList();
-    }
+
     @GetMapping("/users")
     public List<usersDTO> FetchAllUsers() {
         return usersService.fetchAllUsers();
@@ -79,6 +72,21 @@ public class Api {
             usersService.mapTeamLeader(dto);
 
             return ResponseEntity.ok("Mapping Successful");
+        }
+    }
+    @RestController
+    @RequestMapping("/auth")
+    @RequiredArgsConstructor
+    public class AuthController {
+
+        private final AuthService authService;
+
+        @PostMapping("/login")
+        public ResponseEntity<LoginResponse> login(
+                @RequestBody LoginRequest request)
+        {
+            return ResponseEntity.ok(
+                    authService.login(request));
         }
     }
 }
